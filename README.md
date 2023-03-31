@@ -1,6 +1,6 @@
 # Chrome Remote Desktop
 
-![RemoteDesktop](https://github.com/mikepruett3/chrome-remote-desktop/blob/main/images/RemoteDesktop.png?raw=true | width=200 )
+![RemoteDesktop](https://github.com/mikepruett3/chrome-remote-desktop/blob/main/images/RemoteDesktop.png?raw=true)
 
 Chrome Remote Desktop is a simple Desktop application, built using [ElectronJS](https://www.electronjs.org). The project was created forthe simple fact that I have multiple Google accounts, and switching between the accounts to access Remote Desktop is a pain!
 
