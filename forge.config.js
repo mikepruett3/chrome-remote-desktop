@@ -24,4 +24,15 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'mikepruett3',
+          name: 'chrome-remote-desktop'
+        }
+      }
+    }
+  ]
 };
