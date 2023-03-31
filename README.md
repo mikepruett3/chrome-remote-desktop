@@ -14,11 +14,25 @@ Dowload the lates [release](https://github.com/mikepruett3/chrome-remote-desktop
 
 For Windows... a standard Exectuable is provided, as well as a NuGet package.
 
+## Launching
+
+To run, just launch the executable via the Desktop Shortcut, or the Executable directly.
+
+You can also disable Hardware Acceleration at launch, by passing the **disableHardware** command line option at the end
+
+```powershell
+.\"Chrome Remote Desktop.exe" disableHardware
+
+or
+
+npm run start disableHardware
+```
+
 ## Building
 
 To build locally, clone the repository and install the dependencies.
 
-```bash
+```powershell
 git clone https://github.com/mikepruett3/chrome-remote-desktop.git
 cd chrome-remote-desktop
 npm install electron
@@ -27,13 +41,13 @@ npm install @electron-forge/cli
 
 To run the application locally.
 
-```bash
+```powershell
 npm run start
 ```
 
 To build the application installer.
 
-```bash
+```powershell
 npm run make
 ```
 
