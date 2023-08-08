@@ -8,25 +8,19 @@ This app makes it easy. Now I can have my main Google account signed in to my no
 
 I am sure there are other uses, but this was my _selfish_ need...
 
+## Features
+
+- Control for Hardware Acceleration
+
 ## Installation
 
-Dowload the lates [release](https://github.com/mikepruett3/chrome-remote-desktop/releases) for Windows. Unfortunatley I am not able to provide packages for Linux or MacOS at this time.
+Dowload the latest [release](https://github.com/mikepruett3/chrome-remote-desktop/releases) for Windows, Linux and MacOS.
 
 For Windows... a standard Exectuable is provided, as well as a NuGet package.
 
 ## Launching
 
 To run, just launch the executable via the Desktop Shortcut, or the Executable directly.
-
-You can also disable Hardware Acceleration at launch, by passing the **disableHardware** command line option at the end
-
-```powershell
-.\"Chrome Remote Desktop.exe" disableHardware
-
-or
-
-npm run start disableHardware
-```
 
 ## Building
 
@@ -35,8 +29,7 @@ To build locally, clone the repository and install the dependencies.
 ```powershell
 git clone https://github.com/mikepruett3/chrome-remote-desktop.git
 cd chrome-remote-desktop
-npm install electron
-npm install @electron-forge/cli
+npm install
 ```
 
 To run the application locally.
@@ -56,4 +49,5 @@ npm run make
 - electron-squirrel-startup
 - publisher-github
 - electron-forge
+- electron-settings
 - electron

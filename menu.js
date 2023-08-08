@@ -1,58 +1,63 @@
 // menu.js
 
-module.exports = function () {
-    const isMac = process.platform === 'darwin'
+const { app, session, Menu, dialog } = require('electron/main')
+const {getHA, setHA} = require('./settings')
 
-    var menu = [
-        // { role: 'appMenu' }
-        ...(isMac ? [{
-            label: app.name,
-            submenu: [
-                { role: 'about' },
-                { type: 'separator' },
-                { role: 'services' },
-                { type: 'separator' },
-                { role: 'hide' },
-                { role: 'hideOthers' },
-                { role: 'unhide' },
-                { type: 'separator' },
-                { role: 'quit' }
-            ]
-        }] : []),
-        // { role: 'fileMenu' }
-        {
-            label: 'File',
-            submenu: [
-                { type: 'separator' },
-                isMac ? { role: 'close' } : { role: 'quit' },
-            ]
-        },
-        // { role: 'viewMenu' }
-        {
-            label: 'View',
-            submenu: [
-                { role: 'reload' },
-                { role: 'forceReload' },
-                { role: 'toggleDevTools' },
-                { role: 'togglefullscreen' },
-                { type: 'separator' },
-                { role: 'minimize' },
-                { role: 'close' }
-            ]
-        },
-        {
-            label: 'About',
-            submenu: [
-                {
-                    label: 'Github Project',
-                    click: async () => {
-                        const { shell } = require('electron')
-                        await shell.openExternal('https://github.com/mikepruett3/chrome-remote-desktop')
-                    }
+const template = [
+    {
+        role: 'fileMenu'
+    },
+    {
+        role: 'viewMenu'
+    },
+    {
+        label: 'Extras',
+        submenu: [
+            {
+                label: 'Hardware Acceleration',
+                accelerator: 'CommandOrControl+Shift+H',
+                type: 'checkbox',
+                checked: getHA(),
+                click({ checked }) {
+                    setHA(checked)
+                    dialog.showMessageBox(
+                        null,
+                        {
+                            type: 'info',
+                            title: 'info',
+                            message: 'Exiting Applicatiom, as Hardware Acceleration setting has been changed...'
+                        })
+                        .then(result => {
+                            if (result.response === 0) {
+                                app.relaunch();
+                                app.exit()
+                            }
+                        }
+                    )
                 }
-            ]
-        }
-    ]
+            },
+            {
+                label: 'Clear Cache',
+                click: () => {
+                    session.defaultSession.clearStorageData()
+                    app.relaunch();
+                    app.exit();
+                }
+            }
+        ]
+    },
+    {
+        label: 'About',
+        submenu: [
+            {
+                label: 'Github Project',
+                click: async () => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://github.com/mikepruett3/chrome-remote-desktop')
+                }
+            }
+        ]
+    }
+]
 
-    return menu
-}
+module.exports = Menu.buildFromTemplate(template)

@@ -1,5 +1,7 @@
 module.exports = {
   packagerConfig: {
+    asar: true,
+    executableName: 'chrome-remote-desktop',
     icon: __dirname + '/images/RemoteDesktop'
   },
   rebuildConfig: {},
@@ -7,7 +9,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        iconUrl: __dirname + '/images/RemoteDesktop.ico',
+        iconUrl: 'https://raw.githubusercontent.com/mikepruett3/chrome-remote-desktop/blob/images/RemoteDesktop.ico',
         setupIcon: './images/RemoteDesktop.ico',
       },
     },
@@ -34,5 +36,11 @@ module.exports = {
         }
       }
     }
+  ],
+  plugins: [
+    {
+      name: '@electron-forge/plugin-auto-unpack-natives',
+      config: {},
+    },
   ]
 };
